@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<!--依赖对象：完成某个特定的功能需要某个对象才能实现，这个对象就是依赖对象-->
+<!--依赖注入：依赖的对象以形参的形式被注入进来使用，这种方法叫声明式依赖注入。-->
+<!--angular的$scope对象就是依赖对象，并且是依赖注入的形式进行使用-->
+<!--形参必须是特定的名称，否则angular无法注入抛异常-->
+<!--回调函数的event就是依赖对象-->
+<!--回调函数有形参就是依赖注入-->
+<!--1.命令式-->
+<!--更加注重的是执行的过程-->
+
+<!--2.声明式-->
+<!--更加注重的是执行的结果-->
+<!--声明式是对命令的局部包装-->
+<!--依赖注入参照上一篇，MyController的形参$scope-->
+<button id="btn">点一下</button>
+<script type="text/javascript" src="./angular-1.2.29/angular.js"></script>
+<script type="text/javascript">
+	var arr=[1,2,3,4,5]
+	// 命令式
+    // for (var i = 0; i < arr.length; i++) {
+    //   var arrElement = arr[i];
+    //
+    // }
+    //声明式
+	arr=arr.map(value=>value+10)
+    console.log(arr);
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body ng-app="myApp">
+<div ng-controller="MyController">
+	<input type="text" ng-model="firstname">
+	<p>name1:{{firstname}}</p>
+</div>
+<div ng-controller="MyController1">
+	<input type="text" ng-model="firstname">
+	<p>name1:{{firstname}}</p>
+</div>
+
+
+<script type="text/javascript" src="./angular-1.5.5/angular.js"></script>
+<script type="text/javascript">
+  //创建模块对象
+  // var myModule=angular.module('myApp',[]);
+  // //生成作用域对象
+  // myModule.controller('MyController',function ($scope){
+  //   $scope.firstname = 'kobe';
+  // })
+  // myModule.controller('MyController1',function ($scope){
+  //   $scope.firstname = 'bryant';
+  // })
+  //优化 链式调用
+  // angular.module('myApp', [])
+  //     .controller('MyController', function ($scope) {
+  //       $scope.firstname = 'kobe';
+  //     })
+  //     .controller('MyController1', function ($scope) {//隐式声明依赖注入
+  //       $scope.firstname = 'bryant';
+  //     })
+  //以上方法还有问题
+  //js代码压缩后形参会用ABCD字母代替
+  //代码压缩的$scope会被abcd代替，angular解析不了
+  angular.module('myApp', [])
+	  .controller('MyController', ['$scope',function ($scope) {//显式声明依赖注入
+        $scope.firstname = 'kobe';
+      }])
+      .controller('MyController1', ['$scope',function ($scope) {
+        $scope.firstname = 'bryant';
+      }])
+</script>
+</body>
+</html>

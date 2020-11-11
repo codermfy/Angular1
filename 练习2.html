@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body ng-app="myApp">
+<div ng-controller="MyCtrl">
+	<h2>我的备忘录</h2>
+	<div>
+		<input type="text" ng-model="newtodo">
+		<button ng-click="add()">添加</button>
+	</div>
+	<div ng-repeat="item in todos">
+		<input type="checkbox" ng-model="item.isTrue">
+		<span>{{item.name}}</span>
+	</div>
+	<button ng-click="del()">删除选中的</button>
+</div>
+<script type="text/javascript" src="./angular-1.5.5/angular.js"></script>
+<script type="text/javascript">
+  angular.module('myApp', [])
+      .controller('MyCtrl', ['$scope', function (a) {
+        a.todos = [
+          {name: '吃饭', isTrue: false},
+          {name: '睡觉', isTrue: false},
+          {name: '跑步', isTrue: false},
+          {name: '电脑', isTrue: false},
+        ]
+        a.add = function () {
+          if(!a.newtodo){
+            alert('please input')
+            return;
+          }
+          let obj = {name: a.newtodo, isTrue: false}
+          a.todos.unshift(obj)
+          a.newtodo = ''
+        }
+		a.del=function (){
+          a.todos=a.todos.filter(item=>{
+            return !item.isTrue
+          })
+		}
+
+      }])
+</script>
+</body>
+</html>

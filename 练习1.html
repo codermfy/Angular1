@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body ng-app="myApp">
+<div ng-controller="mytext">
+<h1>我的笔记</h1>
+<textarea name="txt" id="" cols="30" rows="10" ng-model="text"></textarea>
+<button ng-click="save()">保存</button>
+<button ng-click="read()">读取</button>
+<button ng-click="delete()">删除</button>
+剩余字数:{{getCount()}}
+</div>
+<script type="text/javascript" src="./angular-1.5.5/angular.js"></script>
+<script type="text/javascript">
+  angular.module('myApp', [])
+  .controller('mytext',['$scope',function (a){
+    a.text=''
+    a.getCount=function (){
+      //判断用户输入的内容长度
+      if(a.text.length>100){
+        a.text=a.text.slice(0,100);
+      }
+      return 100 - a.text.length
+    }
+    a.save=function (){
+      if(a.text) {
+        alert('message is send!')
+        window.sessionStorage.setItem('text', a.text)
+        a.text = ''
+      }
+      else{
+        alert('please add something')
+      }
+    };
+    a.read=function (){
+		a.text=window.sessionStorage.getItem('text') || ''
+    };
+    a.delete=function (){
+      window.sessionStorage.removeItem('text')
+		a.text=''
+    }
+  }])
+</script>
+</body>
+</html>

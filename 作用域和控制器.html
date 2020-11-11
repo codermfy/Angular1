@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body ng-app ng-init="age=39">
+
+<!--控制器对象：-->
+<!--1用来控制Angular应用数据的实例对象-->
+<!--2ng-controller ：指定控制器构造对象，angular会自动new此函数创建控制器对象-->
+<!--3.在控制器函数中声明$scope形参，angular会自动将$scope对象传入-->
+<div ng-controller="MyController">
+	<input type="text" ng-model="firstname">
+	<input type="text" ng-model="lastname">
+	<p>name1:{{firstname + '-' + lastname}}</p>
+	<p>name2:{{getName()}}</p>
+	<p>全局{{age}}</p>
+</div>
+<script src="./angular-1.2.29/angular.js"></script>
+<script type="text/javascript">
+  function MyController($scope) { //形参必须是$scope
+    $scope.firstname = 'kobe'
+    $scope.lastname = 'byrant'
+    $scope.getName=function () {
+      return $scope.firstname + '-' + this.lastname
+    }
+  }
+</script>
+</body>
+</html>
